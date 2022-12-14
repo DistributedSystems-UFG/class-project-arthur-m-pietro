@@ -48,7 +48,7 @@ $ pip3 install kafka-python
 
 (Also if necessary, read this instructions to enable communication with the temperature sensore via GPIO: https://www.waveshare.com/wiki/Raspberry_Pi_Tutorial_Series:_1-Wire_DS18B20_Sensor)
 
-(Also if necessary, edit the const.py file with the address of the gRPC server -- server-2)
+(Also if necessary, edit the const.py file with the address of the gRPC server -- server-1)
 
 - Clone the repo:
 
@@ -60,7 +60,7 @@ $ git clone https://github.com/professorfabio/SSU-2022_2-StarterProject.git
 
 $ cd IoTCode
 
-$ python3 device-controler.py
+$ python3 device-controller.py
 
 ### d. On a client machine (may be on the cloud or on a local machine):
 
