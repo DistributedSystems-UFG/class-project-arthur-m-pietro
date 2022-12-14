@@ -76,7 +76,7 @@ $ python3 thermometer_client.py
 
 $ python3 led_client.py 1 red  --or-- $ python3 led_client.py 0 red (turn on and off, respectively. Just examples)
 
-(If necessary, edit the const.py file with the IP address of the gRPC server -- server-2)
+(If necessary, edit the const.py file with the IP address of the gRPC server -- server-2 and add firewall rule in Google Cloud VPC network)
 
 ## Overall structure of the system
 
