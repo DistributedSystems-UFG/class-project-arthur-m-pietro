@@ -3,7 +3,7 @@ from const import *
 import threading
 from concurrent import futures
 
-from grpc._server import ServerCallContext
+from grpc import ServicerContext
 
 from grpc import (
     ServerInterceptor,
