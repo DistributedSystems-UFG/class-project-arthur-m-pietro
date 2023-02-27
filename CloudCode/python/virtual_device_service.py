@@ -70,7 +70,7 @@ class IoTServer(iot_service_pb2_grpc.IoTServiceServicer):
         return iot_service_pb2.LedReply(ledstate=led_state)
 
 def serve():
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), interceptors=[AuthInterceptor(USERS)])
     iot_service_pb2_grpc.add_IoTServiceServicer_to_server(IoTServer(), server)
     server.add_insecure_port('[::]:50051')
     server.start()
