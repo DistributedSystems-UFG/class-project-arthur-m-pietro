@@ -1,23 +1,29 @@
-import grpc
+import logging
 
+import grpc
 import iot_service_pb2
 import iot_service_pb2_grpc
 
 from const import *
-from concurrent import futures
 
+def get_temperatures(stub):
+    temperatures = []
+    for _ in range(5): # recebe as últimas 5 temperaturas
+        response = stub.SayTemperature(iot_service_pb2.TemperatureRequest(sensorName='my_sensor'))
+        temperature = float(response.temperature)
+        temperatures.append(temperature)
+    return temperatures
+
+def calculate_mean(temperatures):
+    return sum(temperatures) / len(temperatures)
 
 def run():
-    with grpc.secure_channel('localhost:50051', credentials=grpc.ssl_channel_credentials()) as channel:
-        stub = IoTServiceStub(channel)
-        # Adiciona as credenciais ao cabeçalho das requisições
-        metadata = [('user', 'user1'), ('password', 'password1')]
-        response = stub.SayTemperature(TemperatureRequest(), metadata=metadata)
-        print("Temperature: {}".format(response.temperature))
-        # Adiciona as credenciais ao cabeçalho das requisições
-        metadata = [('user', 'user2'), ('password', 'password2')]
-        response = stub.BlinkLed(LedCommand(ledname='red', state=True), metadata=metadata)
-        print("LED state: {}".format(response.ledstate))
+    with grpc.insecure_channel(GRPC_SERVER+':'+GRPC_PORT) as channel:
+        stub = iot_service_pb2_grpc.IoTServiceStub(channel)
+        temperatures = get_temperatures(stub)
+        mean_temperature = calculate_mean(temperatures)
+        print("Mean temperature: {:.2f}°C".format(mean_temperature))
 
 if __name__ == '__main__':
+    logging.basicConfig()
     run()
