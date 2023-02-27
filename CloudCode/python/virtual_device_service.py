@@ -1,13 +1,42 @@
 from kafka import KafkaConsumer, KafkaProducer
 from const import *
 import threading
-
 from concurrent import futures
+from grpc import (
+    ServerInterceptor,
+    ServerCallContext,
+    ServerCredentials,
+    secure_channel_credentials,
+)
 import logging
 
 import grpc
 import iot_service_pb2
 import iot_service_pb2_grpc
+
+class AuthInterceptor(ServerInterceptor):
+    def __init__(self, users):
+        self.users = users
+
+    def intercept_service(self, continuation, handler_call_details):
+        meta = dict(handler_call_details.invocation_metadata)
+        user = meta.get('user', None)
+        password = meta.get('password', None)
+
+        if user and password and self.users.get(user) == password:
+            return continuation(handler_call_details)
+        else:
+            context = handler_call_details.context
+            context.abort(
+                grpc.StatusCode.UNAUTHENTICATED,
+                'Invalid credentials'
+            )
+
+# Dicionário de usuários e senhas
+USERS = {
+    'user1': 'password1',
+    'user2': 'password2',
+}
 
 # Twin state
 current_temperature = 'void'
