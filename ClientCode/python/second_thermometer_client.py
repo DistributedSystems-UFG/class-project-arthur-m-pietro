@@ -1,8 +1,11 @@
 import grpc
+
+import iot_service_pb2
+import iot_service_pb2_grpc
+
 from const import *
 from concurrent import futures
-from iot_service_pb2_grpc import IoTServiceStub
-from iot_service_pb2 import LedCommand, TemperatureRequest
+
 
 def run():
     with grpc.secure_channel('localhost:50051', credentials=grpc.ssl_channel_credentials()) as channel:
