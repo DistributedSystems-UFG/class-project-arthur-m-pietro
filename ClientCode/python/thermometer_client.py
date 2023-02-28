@@ -1,6 +1,7 @@
 #from __future__ import print_function
 
 import logging
+import time
 
 import grpc
 import iot_service_pb2
@@ -18,4 +19,6 @@ def run():
 
 if __name__ == '__main__':
     logging.basicConfig()
-    run()
+    while True:
+        run()
+        time.sleep(2)
