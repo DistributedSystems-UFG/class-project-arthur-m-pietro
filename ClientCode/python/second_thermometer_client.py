@@ -20,8 +20,9 @@ if __name__ == '__main__':
     temperatures_array = []
     while True:
         for i in range(5):
-            temperature = run()
+            temperatureStr = run()
+            temperature = float(temperatureStr)
             temperatures_array.append(temperature)
-            print(type(temperature))
-            print("Temperatura média: {:.2f}ºC." )            
+            media = sum(temperatures_array) / len(temperatures_array)
+            print("Temperatura média: {:.2f}ºC." + media)            
             time.sleep(1)
