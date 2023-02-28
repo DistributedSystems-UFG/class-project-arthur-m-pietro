@@ -24,5 +24,5 @@ if __name__ == '__main__':
             temperature = float(temperatureStr)
             temperatures_array.append(temperature)
             media = sum(temperatures_array) / len(temperatures_array)
-            print("Temperatura média: {:.2f}ºC." + media)            
+            print("Temperatura média: {:.2f}ºC." + str(media))            
             time.sleep(1)
