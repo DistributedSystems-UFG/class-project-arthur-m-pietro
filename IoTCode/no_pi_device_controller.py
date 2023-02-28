@@ -14,4 +14,4 @@ while True:
     producer.send('temperature', str(temp_c).encode())
 
     # Aguardar um tempo aleatório entre 1 e 5 segundos antes de gerar a próxima temperatura
-    time.sleep(random.uniform(1, 5))
+    time.sleep(1)

@@ -15,7 +15,7 @@ def run():
         stub = iot_service_pb2_grpc.IoTServiceStub(channel)
         response = stub.SayTemperature(iot_service_pb2.TemperatureRequest(sensorName='my_sensor'))
 
-    print("Temperature received: " + response.temperature)
+    print("Temperature received: {:.2f}ºC." + response.temperature)
 
 if __name__ == '__main__':
     logging.basicConfig()
