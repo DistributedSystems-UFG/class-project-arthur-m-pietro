@@ -15,7 +15,7 @@ def run():
     print("password: ")
     password = input()
 
-    metadata = {username, password}
+    metadata = {'username': username}, password
 
 
     with grpc.insecure_channel(GRPC_SERVER+':'+GRPC_PORT) as channel:
