@@ -22,6 +22,6 @@ if __name__ == '__main__':
         for i in range(5):
             temperature = run()
             temperatures_array.append(temperature)
-            media = sum(temperatures_array)/len(temperatures_array)
+            media = sum(int)(temperatures_array) / len(int)(temperatures_array)
             print("Temperatura média: {:.2f}ºC." + media)            
             time.sleep(1)
