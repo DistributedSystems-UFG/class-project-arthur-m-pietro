@@ -14,7 +14,7 @@ def run():
         stub = iot_service_pb2_grpc.IoTServiceStub(channel)
         temperatures = []
 
-        avarage = NULL;
+        avarage = 0;
 
         for _ in range(5): # recebe as últimas 5 temperaturas
             response = stub.SayTemperature(iot_service_pb2.TemperatureRequest(sensorName='my_sensor'))
