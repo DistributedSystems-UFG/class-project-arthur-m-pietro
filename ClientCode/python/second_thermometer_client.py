@@ -24,6 +24,7 @@ if __name__ == '__main__':
 
     temperatures_array = []
     while True:
+        # Média dos últimos 5 valores
         for i in range(5):
             temperatureStr = run()
             temperature = float(temperatureStr)
