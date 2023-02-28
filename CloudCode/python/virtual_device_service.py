@@ -40,7 +40,11 @@ def produce_led_command(state, ledname):
 class IoTServer(iot_service_pb2_grpc.IoTServiceServicer):
 
     def SayTemperature(self, request, context):
-        return iot_service_pb2.TemperatureReply(temperature=current_temperature)
+        if(request.username == 'admin' and request.password == 'admin'):
+            return iot_service_pb2.TemperatureReply(temperature=current_temperature)
+        else:
+            print("Credenciais inválidas")
+            return -1
     
     def BlinkLed(self, request, context):
         print ("Blink led ", request.ledname)
