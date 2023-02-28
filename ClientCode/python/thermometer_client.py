@@ -18,10 +18,12 @@ def run():
 
 if __name__ == '__main__':
     logging.basicConfig()
+    
     print("username: ")
     username = input()
     print("password: ")
     password = input()
+
     while True:
         run()
         time.sleep(1)
